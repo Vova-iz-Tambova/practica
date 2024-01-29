@@ -6,31 +6,36 @@ class Database
 
   public function __construct($host, $user, $pass, $db)
   {
-    $this->db = mysql_connect($host, $user, $pass);
+    $this->db = mysqli_connect($host, $user, $pass, $db);
 
-    if (!$this->db) {
-      exit('No connect');
+    // if (!$this->db) {
+    //   exit('No connect');
+    // }
+
+    if ($this->db -> connect_errno) {
+      echo "Failed to connect to MySQL: " . $this->db -> connect_error;
+      exit();
     }
 
-    if (!mysql_select_db($db, $this->db)) {
-      exit('No table');
-    }
+    // if (!mysqli_select_db($db, $this->db)) {
+    //   exit('No table');
+    // }
 
-    mysql_query("SET NAMES cp1251");
-    return $this->db;
+    // mysqli_query("SET NAMES cp1251");
+    // return $this->db;
   }
 
   public function get_all_db()
   {
     {
-      $sql = 'SELECT id, name FROM statti LIMIT 10';
-      $res = mysql_query($sql);
+      $sql = "SELECT id, name FROM statti LIMIT 10";
+      $res = $this->db->query($sql);
   
       if (!$res) {
         return FALSE;
       }
-      for ($i = 0; $i < mysql_num_rows($res); $i++) {
-        $row[] = mysql_fetch_array($res, MYSQLI_ASSOC);
+      for ($i = 0; $i < mysqli_num_rows($res); $i++) {
+        $row[] = mysqli_fetch_array($res, MYSQLI_ASSOC);
       }
 
       return $row;

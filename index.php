@@ -9,7 +9,7 @@ $page = new Page();
   }
   else {
     $text = $page->get_all();
-    print_r($text);
+    echo $page->get_body($text, 'main');
   }
 
 ?>
