@@ -10,14 +10,12 @@
 <body>
     <h1>Header</h1>
     <?php if (isset($text)) : ?>
-        <?php foreach ($text as $item) : ?>
             <h2>
-                <a href="index.php?id=<?= $item['id']; ?>"><?= $item['id']; ?></a>
+                <?= $text['id']; ?>
             </h2>
             <p>
-                <?= $item['name']; ?>
+                <?= $text['name']; ?>
             </p>
-        <?php endforeach; ?>
     <?php endif; ?>
     <h6>footer</h6>
 </body>

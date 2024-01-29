@@ -15,6 +15,10 @@ class Page
 
   public function get_one($id)
   {
+    $db = new Database(HOST, USER, PASS, DB);
+    $result = $db->get_one_db($id);
+
+    return $result;
   }
 
   public function get_body($text, $file)
